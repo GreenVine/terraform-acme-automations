@@ -9,6 +9,11 @@ variable "acme_account_key_fingerprint" {
   type        = string
 }
 
+variable "acme_dns_challenge_provider" {
+  description = "Provider to be used for DNS challenge"
+  type        = string
+}
+
 variable "cert_cn" {
   description = "Certificate common name"
   type        = string
@@ -17,11 +22,6 @@ variable "cert_cn" {
 variable "cert_sans" {
   description = "Certificate subject alternative names (SAN)"
   type        = list(string)
-}
-
-variable "acme_dns_challenge_provider" {
-  description = "Provider to be used for DNS challenge"
-  type        = string
 }
 
 // Optional variables
@@ -45,4 +45,10 @@ variable "cert_ocsp_stapling" {
   description = "Enables the OCSP Stapling Required TLS Security Policy extension"
   type        = bool
   default     = false
+}
+
+variable "cert_description" {
+  description = "Friendly description of the certificate request"
+  type        = string
+  default     = ""
 }

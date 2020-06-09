@@ -9,7 +9,6 @@ variable "acme_cert_requests" {
   type        = map(object({
     cn            = string
     sans          = list(string)
-    key_algo      = string
     key_type      = string
     dns_provider  = string
     ocsp_stapling = bool

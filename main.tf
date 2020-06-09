@@ -26,8 +26,11 @@ module "acme_manager" {
   acme_account_key_fingerprint = tls_private_key.account_key.public_key_fingerprint_md5
   acme_dns_challenge_provider  = each.value.dns_provider
   acme_recursive_ns            = var.acme_recursive_ns
+  cert_description             = each.key
   cert_cn                      = each.value.cn
   cert_sans                    = each.value.sans
+  cert_key_type                = each.value.key_type
+  cert_ocsp_stapling           = each.value.ocsp_stapling
 }
 
 // Archive issued certificates and keys
@@ -39,13 +42,13 @@ module "cert_archiver" {
   storage_prefix = var.cert_storage_gcs_prefix
 
   acme_account_fingerprint = tls_private_key.account_key.public_key_fingerprint_md5
-  cert_request_id          = each.value.acme_request_id
-  cert_provider_id         = each.value.acme_cert_id
-  cert_private_key         = each.value.acme_cert_private_key
-  cert_leaf                = each.value.acme_cert_leaf
-  cert_intermediate        = each.value.acme_cert_intermediate
-  cert_fullchain_p12       = each.value.acme_cert_fullchain_p12
-  cert_fullchain_pem       = each.value.acme_cert_fullchain_pem
-  cert_cn                  = each.value.acme_request_cn
-  cert_sans                = each.value.acme_request_sans
+  acme_cert_id             = each.value.acme_cert_id
+  cert_cn                  = each.value.cert_request_cn
+  cert_sans                = each.value.cert_request_sans
+  cert_request_id          = each.value.cert_request_id
+  cert_private_key         = each.value.cert_private_key
+  cert_leaf                = each.value.cert_leaf
+  cert_intermediate        = each.value.cert_intermediate
+  cert_fullchain_p12       = each.value.cert_fullchain_p12
+  cert_fullchain_pem       = each.value.cert_fullchain_pem
 }

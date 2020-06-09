@@ -17,7 +17,7 @@ resource "google_storage_bucket_object" "objects_archive" {
   content_type = "text/plain; charset=utf-8"
   metadata     = {
     "x-acme-account-id"  = var.acme_account_fingerprint
-    "x-acme-cert-id"     = var.cert_provider_id
+    "x-acme-cert-id"     = var.acme_cert_id
     "x-acme-request-id"  = var.cert_request_id
     "x-cert-common-name" = var.cert_cn
     "x-cert-sans"        = join(",", var.cert_sans)

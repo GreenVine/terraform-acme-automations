@@ -4,13 +4,13 @@ variable "storage_bucket" {
   type        = string
 }
 
-variable "cert_request_id" {
-  description = "Certificate request identifier"
+variable "acme_cert_id" {
+  description = "Certificate identifier within the ACME CA"
   type        = string
 }
 
-variable "cert_provider_id" {
-  description = "Certificate identifier within the ACME CA"
+variable "cert_request_id" {
+  description = "Certificate request identifier"
   type        = string
 }
 
@@ -40,14 +40,14 @@ variable "cert_fullchain_p12" {
 }
 
 // Optional variables
-variable "storage_prefix" {
-  description = "The object prefix for all archives"
+variable "acme_account_fingerprint" {
+  description = "ACME account fingerprint"
   type        = string
   default     = ""
 }
 
-variable "acme_account_fingerprint" {
-  description = "ACME account fingerprint"
+variable "storage_prefix" {
+  description = "The object prefix for all archives"
   type        = string
   default     = ""
 }
