@@ -19,11 +19,6 @@ variable "cert_cn" {
   type        = string
 }
 
-variable "cert_sans" {
-  description = "Certificate subject alternative names (SAN)"
-  type        = list(string)
-}
-
 // Optional variables
 variable "acme_recursive_ns" {
   description = "Recursive nameservers for DNS propagation check"
@@ -33,6 +28,12 @@ variable "acme_recursive_ns" {
     "1.1.1.1:53",
     "8.8.4.4:53",
   ]
+}
+
+variable "cert_sans" {
+  description = "Certificate subject alternative names (SAN)"
+  type        = list(string)
+  default     = []
 }
 
 variable "cert_key_type" {
