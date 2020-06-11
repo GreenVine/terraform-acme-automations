@@ -23,7 +23,7 @@ module "acme_manager" {
   source   = "./modules/acme-manager"
 
   acme_account_key             = acme_registration.acme_account.account_key_pem
-  acme_account_key_fingerprint = tls_private_key.account_key.public_key_fingerprint_md5
+  acme_account_key_fingerprint = replace(tls_private_key.account_key.public_key_fingerprint_md5, ":", "")
   acme_dns_challenge_provider  = each.value.dns_provider
   acme_recursive_ns            = var.acme_recursive_ns
   cert_description             = each.key
@@ -41,7 +41,7 @@ module "cert_archiver" {
   storage_bucket = var.cert_storage_gcs_bucket
   storage_prefix = var.cert_storage_gcs_prefix
 
-  acme_account_fingerprint = tls_private_key.account_key.public_key_fingerprint_md5
+  acme_account_fingerprint = replace(tls_private_key.account_key.public_key_fingerprint_md5, ":", "")
   acme_cert_id             = each.value.acme_cert_id
   cert_cn                  = each.value.cert_request_cn
   cert_sans                = each.value.cert_request_sans

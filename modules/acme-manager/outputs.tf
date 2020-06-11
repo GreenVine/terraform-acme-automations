@@ -17,7 +17,7 @@ output "acme_cert_id" {
 // Optimistically unique request ID (calculated based on the account, CN and SANs)
 output "cert_request_id" {
   description = "Certificate request identifier"
-  value       = sha512(join(",", [
+  value       = sha256(join(",", [
     var.acme_account_key_fingerprint,
     var.cert_description,
     acme_certificate.cert.common_name,
