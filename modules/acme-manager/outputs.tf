@@ -20,6 +20,7 @@ output "cert_request_id" {
   value       = sha256(join(",", [
     var.acme_account_key_fingerprint,
     var.cert_description,
+    var.cert_key_type,
     acme_certificate.cert.common_name,
     join(",", local.cert_sans_sorted)
   ]))
