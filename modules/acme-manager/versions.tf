@@ -3,7 +3,7 @@ terraform {
     acme = {
       source = "terraform-providers/acme"
     }
-    tls  = {
+    tls = {
       source = "hashicorp/tls"
     }
   }

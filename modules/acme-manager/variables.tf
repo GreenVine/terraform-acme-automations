@@ -23,7 +23,7 @@ variable "cert_cn" {
 variable "acme_recursive_ns" {
   description = "Recursive nameservers for DNS propagation check"
   type        = list(string)
-  default     = [
+  default = [
     "8.8.8.8:53",
     "1.1.1.1:53",
     "8.8.4.4:53",

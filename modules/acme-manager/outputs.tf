@@ -17,7 +17,7 @@ output "acme_cert_id" {
 // Optimistically unique request ID (calculated based on the account, CN and SANs)
 output "cert_request_id" {
   description = "Certificate request identifier"
-  value       = sha256(join(",", [
+  value = sha256(join(",", [
     var.acme_account_key_fingerprint,
     var.cert_description,
     var.cert_key_type,
@@ -59,7 +59,7 @@ output "cert_intermediate" {
 
 output "cert_fullchain_pem" {
   description = "Certificate full chain in PEM format"
-  value       = join("\n", [
+  value = join("\n", [
     acme_certificate.cert.certificate_pem,
     acme_certificate.cert.issuer_pem,
   ])

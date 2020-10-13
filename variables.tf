@@ -6,7 +6,7 @@ variable "acme_account_email" {
 
 variable "acme_cert_requests" {
   description = "List of certificate requests"
-  type        = map(object({
+  type = map(object({
     cn            = string
     sans          = list(string)
     key_type      = string

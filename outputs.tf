@@ -1,6 +1,6 @@
 locals {
   acme_cert_lists = flatten([for cert_description, cert_response in module.acme_manager : {
-    "${cert_description}" = {
+    cert_description = {
       acme_cert_id       = cert_response.acme_cert_id
       cert_request_id    = cert_response.cert_request_id
       cert_request_cn    = cert_response.cert_request_cn
@@ -12,7 +12,7 @@ locals {
   }])
 
   # convert acme_cert_lists to key-value map
-  acme_cert_map = {for item in local.acme_cert_lists: keys(item)[0] => values(item)[0]}
+  acme_cert_map = { for item in local.acme_cert_lists : keys(item)[0] => values(item)[0] }
 }
 
 output "acme_account_id" {
