@@ -5,24 +5,27 @@ acme_account_email = "myaccount@example.com"
 acme_cert_requests = {
   "awesome_website_1" = {
     # Common name
-    cn            = "*.example.com",
+    cn = "*.example.com",
     # Subject alternative names (SANs)
-    sans          = [
+    sans = [
       "*.awesome.example.com",
     ],
     # RSA / ECDSA key length
-    key_type      = "2048",
+    key_type = "2048",
     # DNS provider for DNS-01 challenge
-    dns_provider  = "gcloud",
+    dns_challenge_provider = "gcloud",
+    dns_challenge_config = {
+      GCE_PROJECT = "awesome-gcp-project",
+    },
     # Enables the OCSP Stapling Required TLS extension
     ocsp_stapling = false,
   },
 
   "awesome_website_2" = {
-    cn            = "*.example.net",
-    key_type      = "P256",
-    dns_provider  = "route53",
-    ocsp_stapling = true,
+    cn                     = "*.example.net",
+    key_type               = "P256",
+    dns_challenge_provider = "route53",
+    ocsp_stapling          = true,
   },
 }
 
