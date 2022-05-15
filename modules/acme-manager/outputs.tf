@@ -59,7 +59,7 @@ output "cert_intermediate" {
 
 output "cert_fullchain_pem" {
   description = "Certificate full chain in PEM format"
-  value = join("\n", [
+  value = join("", [
     acme_certificate.cert.certificate_pem,
     acme_certificate.cert.issuer_pem,
   ])
