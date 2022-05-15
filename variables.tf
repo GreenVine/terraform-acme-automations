@@ -4,6 +4,18 @@ variable "acme_account_email" {
   type        = string
 }
 
+variable "acme_eab_key_id" {
+  description = "ACME provider EAB key ID"
+  type        = string
+  default     = ""
+}
+
+variable "acme_eab_hmac_base64" {
+  description = "ACME provider EAB HMAC Base64"
+  type        = string
+  default     = ""
+}
+
 variable "acme_cert_requests" {
   description = "List of certificate requests"
   type = map(object({

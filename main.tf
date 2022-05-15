@@ -15,6 +15,20 @@ resource "tls_private_key" "account_key" {
 resource "acme_registration" "acme_account" {
   account_key_pem = tls_private_key.account_key.private_key_pem
   email_address   = var.acme_account_email
+
+  dynamic "external_account_binding" {
+    for_each = var.acme_eab_key_id != "" && var.acme_eab_hmac_base64 != "" ? [
+      {
+        key_id      = var.acme_eab_key_id
+        hmac_base64 = var.acme_eab_hmac_base64
+      }
+    ] : []
+
+    content {
+      key_id      = external_account_binding.value["key_id"]
+      hmac_base64 = external_account_binding.value["hmac_base64"]
+    }
+  }
 }
 
 // Request certificates with ACME manager module
