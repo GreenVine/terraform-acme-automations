@@ -14,6 +14,11 @@ variable "acme_dns_challenge_provider" {
   type        = string
 }
 
+variable "acme_dns_challenge_config" {
+  description = "Provider config for DNS challenge"
+  type        = map(string)
+}
+
 variable "cert_cn" {
   description = "Certificate common name"
   type        = string

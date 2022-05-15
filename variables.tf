@@ -7,11 +7,12 @@ variable "acme_account_email" {
 variable "acme_cert_requests" {
   description = "List of certificate requests"
   type = map(object({
-    cn            = string
-    sans          = list(string)
-    key_type      = string
-    dns_provider  = string
-    ocsp_stapling = bool
+    cn                     = string
+    sans                   = list(string)
+    key_type               = string
+    dns_challenge_provider = string
+    dns_challenge_config   = map(string)
+    ocsp_stapling          = bool
   }))
 }
 

@@ -9,5 +9,6 @@ resource "acme_certificate" "cert" {
 
   dns_challenge {
     provider = var.acme_dns_challenge_provider
+    config   = var.acme_dns_challenge_config
   }
 }

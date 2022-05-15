@@ -1,5 +1,5 @@
 terraform {
-  backend "http" {}
+  backend "gcs" {}
 }
 
 provider "acme" {
@@ -24,7 +24,8 @@ module "acme_manager" {
 
   acme_account_key             = acme_registration.acme_account.account_key_pem
   acme_account_key_fingerprint = replace(tls_private_key.account_key.public_key_fingerprint_md5, ":", "")
-  acme_dns_challenge_provider  = each.value.dns_provider
+  acme_dns_challenge_provider  = each.value.dns_challenge_provider
+  acme_dns_challenge_config    = each.value.dns_challenge_config
   acme_recursive_ns            = var.acme_recursive_ns
   cert_description             = each.key
   cert_cn                      = each.value.cn
@@ -43,6 +44,7 @@ module "cert_archiver" {
 
   acme_account_fingerprint = replace(tls_private_key.account_key.public_key_fingerprint_md5, ":", "")
   acme_cert_id             = each.value.acme_cert_id
+  cert_description         = each.key
   cert_cn                  = each.value.cert_request_cn
   cert_sans                = each.value.cert_request_sans
   cert_request_id          = each.value.cert_request_id

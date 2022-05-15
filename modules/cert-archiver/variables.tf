@@ -9,6 +9,11 @@ variable "acme_cert_id" {
   type        = string
 }
 
+variable "cert_description" {
+  description = "Friendly description of the certificate request"
+  type        = string
+}
+
 variable "cert_request_id" {
   description = "Certificate request identifier"
   type        = string
