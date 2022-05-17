@@ -62,6 +62,10 @@ cert_storage_gcs_prefix = "prefix/to/certificates"
 
 The module `cert-archiver` manages private keys and certificates and uploads them to object storage services. [Google Cloud Storage (GCS)](https://cloud.google.com/storage) is supported by default but is interchangeable with any storage providers.
 
+## Limitations
+
+If multiple certificate requests contain the same common name / SAN, domain ownership verification may fail. This is because Terraform attempts to request certificates in parallel, hence generating conflicting ACME challenge data. The workaround is to split them into separate Terraform transactions (i.e. request certificate one at a time).
+
 ## Reference
 
 - Terraform ACME Provider: https://www.terraform.io/docs/providers/acme/index.html
