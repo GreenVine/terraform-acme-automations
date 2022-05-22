@@ -4,9 +4,14 @@ locals {
 }
 
 output "acme_account_key" {
-  description = "Provisioned certificate"
+  description = "Private key for ACME account"
   value       = acme_certificate.cert.account_key_pem
   sensitive   = true
+}
+
+output "acme_account_key_fingerprint" {
+  description = "Fingerprint for ACME account key (in MD5)"
+  value       = var.acme_account_key_fingerprint
 }
 
 output "acme_cert_id" {
@@ -43,18 +48,18 @@ output "cert_request_sans" {
 
 output "cert_private_key" {
   description = "Certificate private key"
-  value       = acme_certificate.cert.private_key_pem
+  value       = trimspace(acme_certificate.cert.private_key_pem)
   sensitive   = true
 }
 
 output "cert_leaf" {
   description = "Leaf certificate"
-  value       = acme_certificate.cert.certificate_pem
+  value       = trimspace(acme_certificate.cert.certificate_pem)
 }
 
 output "cert_intermediate" {
   description = "Intermediate certificate"
-  value       = acme_certificate.cert.issuer_pem
+  value       = trimspace(acme_certificate.cert.issuer_pem)
 }
 
 output "cert_fullchain_pem" {
@@ -67,6 +72,6 @@ output "cert_fullchain_pem" {
 
 output "cert_fullchain_p12" {
   description = "Certificate full chain and private key in PKCS12 format"
-  value       = acme_certificate.cert.certificate_p12
+  value       = trimspace(acme_certificate.cert.certificate_p12)
   sensitive   = true
 }
